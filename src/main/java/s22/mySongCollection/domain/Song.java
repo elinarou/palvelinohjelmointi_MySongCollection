@@ -1,5 +1,6 @@
 package s22.mySongCollection.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,31 +12,34 @@ import javax.validation.constraints.Size;
 @Entity
 public class Song {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Size(min = 1, max = 50)
+	@Column(name = "song_name")
 	private String name;
 	
 	@Size(min = 1, max = 50)
 	private String artist;
+	
+	@Size(min = 5, max = 500)
+	private String url;
 	
 	@ManyToOne
 	@JoinColumn(name="genre_id")
 	private Genre genre;
 	
 	@ManyToOne
-	@JoinColumn(name="instrument_id")
+	@JoinColumn(name="instru_id")
 	private Instrument instrument;
 	
-	@Size(min = 5, max = 500)
-	private String url;
+
 
 	public Song() {
 		super();
 	}
 
-	public Song(@Size(min = 1, max = 50) String name, String artist, Genre genre, Instrument instrument, String url) {
+	public Song(String name, String artist, String url, Genre genre, Instrument instrument) {
 		super();
 		this.name = name;
 		this.artist = artist;

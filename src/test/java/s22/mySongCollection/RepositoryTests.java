@@ -61,14 +61,14 @@ class RepositoryTests {
 
 	@Test
 	public void insertNewSong() {
-		Song song = new Song("Laulu6", "Muusikko6", grepository.findByName("Pop").get(0), irepository.findByName("Piano").get(0), "https://www.google.com/");
+		Song song = new Song("Laulu6", "Muusikko6", "https://www.google.com/", grepository.findByName("Pop").get(0), irepository.findByName("Piano").get(0));
 		repository.save(song);
 		assertNotNull(song.getId());
 	}
 	
 	@Test
 	public void deleteNewSong() {
-		Song newSong = new Song("Laulu7", "Muusikko7", grepository.findByName("Pop").get(0), irepository.findByName("Piano").get(0), "https://www.google.com/");
+		Song newSong = new Song("Laulu7", "Muusikko7", "https://www.google.com/", grepository.findByName("Pop").get(0), irepository.findByName("Piano").get(0));
 		repository.save(newSong);
 		List<Song> songs = repository.findByName("Laulu7");
 		Song song = songs.get(0);
